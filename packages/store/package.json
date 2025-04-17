@@ -1,0 +1,25 @@
+{
+  "name": "@repo/store",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    "./*": "./src/*.ts"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "generate:component": "turbo gen react-component",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@turbo/gen": "^2.5.0",
+    "@types/node": "^22.14.0",
+    "typescript": "5.8.2"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.7.0",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
+  }
+}
