@@ -32,6 +32,7 @@ export const AddMoney = () => {
         }))} />
         <div className="flex justify-center pt-4">
             <Button onClick={() => {
+
                 window.location.href = redirectUrl || "";
             }}>
             Add Money

@@ -1,10 +1,8 @@
 import express from "express";
-import { PrismaClient } from "@repo/db/index";
+import { prisma } from "@repo/db/index";
 
 const app = express();
 app.use(express.json());
-
-const prisma = new PrismaClient();
 
 app.post("/bank-webhook", async function (req, res) {
   const paymentDetails: {

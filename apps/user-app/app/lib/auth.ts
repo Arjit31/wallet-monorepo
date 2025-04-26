@@ -1,7 +1,7 @@
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import bcrypt from "bcrypt";
-import { PrismaClient } from "@repo/db/index";
+import { prisma } from "@repo/db/index";
 
 export const authOptions = {
   providers: [
@@ -24,7 +24,6 @@ export const authOptions = {
         if (!credentials || !credentials.email || !credentials.phone || !credentials.password)
           return null;
         const hashedPassword = await bcrypt.hash(credentials.password, 10);
-        const prisma = new PrismaClient();
         const existingUser = await prisma.user.findFirst({
           where: {
             number: credentials.phone,
@@ -41,6 +40,9 @@ export const authOptions = {
               name: existingUser.name,
               email: existingUser.number,
             };
+          }
+          else{
+            console.log(existingUser);
           }
           return null;
         }
