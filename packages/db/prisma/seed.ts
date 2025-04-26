@@ -1,11 +1,15 @@
-import { PrismaClient } from '@prisma/xxx-client'
-const prisma = new PrismaClient()
+import {prisma} from "../src/index"
 declare const process: any;
+import bcrypt from "bcrypt";
 
 async function main() {
+  const hashedPassword1 = await bcrypt.hash('alice', 10);
+  const hashedPassword2 = await bcrypt.hash('alice', 10);
   const alice = await prisma.user.upsert({
     where: { number: '9999999999' },
-    update: {},
+    update: {
+      password: hashedPassword1
+    },
     create: {
       email: 'alice@example.com',
       number: '9999999999',
@@ -25,7 +29,9 @@ async function main() {
 
   const bob = await prisma.user.upsert({
     where: { number: '9999999998' },
-    update: {},
+    update: {
+      password: hashedPassword2
+    },
     create: {
       email: 'bob@example.com',
       number: '9999999998',
