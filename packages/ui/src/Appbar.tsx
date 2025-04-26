@@ -1,10 +1,10 @@
 import { Button } from "./button";
+import React from "react"
 
 interface AppbarProps {
     user?: {
         name?: string | null;
     },
-    // TODO: can u figure out what the type should be here?
     onSignin: any,
     onSignout: any
 }
