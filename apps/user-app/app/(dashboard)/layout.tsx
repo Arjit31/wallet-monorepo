@@ -1,25 +1,29 @@
 import { Sidebar } from "../components/Sidebar";
 import React from "react";
+import { AppbarClient } from "../components/AppbarClient";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex">
-      <div className="w-56 border-r border-slate-300 min-h-screen mr-4 pt-28">
-        <div>
-          <Sidebar href={"/dashboard"} icon={<HomeIcon />} title="Home" />
-          <Sidebar
-            href={"/transfer"}
-            icon={<TransferIcon />}
-            title="Transfer"
-          />
-          <Sidebar
-            href={"/transactions"}
-            icon={<TransactionsIcon />}
-            title="Transactions"
-          />
+    <div className="flex flex-col">
+      <AppbarClient />
+      <div className="flex">
+        <div className="w-56 border-r border-slate-300 min-h-screen mr-4 pt-28">
+          <div>
+            <Sidebar href={"/dashboard"} icon={<HomeIcon />} title="Home" />
+            <Sidebar
+              href={"/transfer"}
+              icon={<TransferIcon />}
+              title="Transfer"
+            />
+            <Sidebar
+              href={"/transactions"}
+              icon={<TransactionsIcon />}
+              title="Transactions"
+            />
+          </div>
         </div>
+        {children}
       </div>
-      {children}
     </div>
   );
 }

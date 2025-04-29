@@ -1,4 +1,4 @@
-import { prisma } from "@repo/db/index";
+import { prisma } from "@repo/db";
 import { AddMoney } from "../../components/AddMoneyCard";
 import { BalanceCard } from "../../components/BalanceCard";
 import { OnRampTransactions } from "../../components/OnRampTransaction";
@@ -12,6 +12,7 @@ async function getBalance() {
       userId: session?.user?.id,
     },
   });
+  console.log(balance, session?.user?.id);
   return {
     amount: balance?.amount || 0,
     locked: balance?.locked || 0,
