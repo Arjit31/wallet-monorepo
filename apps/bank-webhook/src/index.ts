@@ -1,5 +1,5 @@
 import express from "express";
-import { prisma } from "@repo/db/index";
+import { prisma } from "@repo/db"
 
 const app = express();
 app.use(express.json());
@@ -22,7 +22,7 @@ app.post("/bank-webhook", async function (req, res) {
         },
         data: {
           amount: {
-            increment: paymentDetails.amount,
+            increment: Number(paymentDetails.amount),
           },
         },
       }),

@@ -2,7 +2,7 @@ import { Session } from "inspector/promises";
 import GoogleProvider from "next-auth/providers/google";
 
 // import bcrypt from "bcrypt";
-// import { prisma } from "@repo/db/index";
+// import { prisma } from "@repo/db";
 
 export const authOptions = {
   
