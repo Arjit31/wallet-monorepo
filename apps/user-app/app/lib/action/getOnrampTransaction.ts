@@ -9,10 +9,11 @@ export async function getOnrampTransaction(
   provider: string,
   amount: number,
   token: string
-): Promise<boolean> {
+): Promise<{flag: boolean, userId: string, start_time: Date}> {
+  const now = new Date();
   const session = await getServerSession(authOptions);
   if (!session?.user || !session.user?.id || !provider || !amount || !token) {
-    return false;
+    return {flag: false, userId: session.user.id, start_time: now};
   }
   try {
     const transaction = await prisma.onRampTransaction.findFirst({
@@ -28,11 +29,11 @@ export async function getOnrampTransaction(
       status: "Processing",
     };
     if (!transaction || _.isMatch(transaction, currData) === false) {
-      return false;
+      return {flag: false, userId: session.user.id, start_time: now};
     }
-    return true;
+    return {flag: true, userId: session.user.id, start_time: transaction.start_time};
   } catch (error) {
     console.log(error);
-    return false;
+    return {flag: false, userId: session.user.id, start_time: now};
   }
 }

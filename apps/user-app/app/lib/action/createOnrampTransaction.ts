@@ -3,6 +3,7 @@
 import { prisma } from "@repo/db";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
+import axios from "axios";
 
 export async function createOnrampTransaction(
   provider: string,
@@ -27,5 +28,10 @@ export async function createOnrampTransaction(
       userId: session.user.id,
     },
   });
+  const res = await axios.post(process.env.NEXT_PUBLIC_WEBHOOK_URL + "/setExpiry", {
+    token: token,
+    userId: session.user.id
+  })
+  // console.log(res)
   return token;
 }

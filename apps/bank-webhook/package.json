@@ -5,21 +5,28 @@
   "main": "index.js",
   "scripts": {
     "build": "npx esbuild ./src/index.ts --bundle --platform=node --outfile=dist/index.js",
-    "start": "node dist/index.js",
-    "dev": "npm run build && npm run start"
+    "start": "node dist/index.js & node dist/worker/expireWorker.js",
+    "worker": "node dist/worker/expireWorker.js",
+    "dev": "npm run build && (node dist/index.js & node dist/worker/expireWorker.js)"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@repo/db": "workspace:*",
     "@types/express": "^5.0.1",
+    "bullmq": "^5.51.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "esbuild": "^0.25.3",
     "express": "^5.1.0",
-    "@repo/db": "workspace:*"
+    "ioredis": "^5.6.1",
+    "redis": "^4.7.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@types/cors": "^2.8.17",
     "eslint": "^9.24.0",
     "typescript": "5.8.2"
   }

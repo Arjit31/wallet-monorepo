@@ -25,8 +25,13 @@ async function getOnRampTransactions() {
     where: {
       userId: session?.user?.id,
     },
+    orderBy: {
+      start_time: 'desc',
+    },
   });
-  return txns.map((t) => ({
+
+    
+  return txns.map((t: any) => ({
     time: t.start_time,
     amount: t.amount,
     status: t.status,

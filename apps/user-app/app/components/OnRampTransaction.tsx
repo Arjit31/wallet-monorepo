@@ -18,7 +18,7 @@ export const OnRampTransactions = ({
         </Card>
     }
     return <Card title="Recent Transactions">
-        <div className="pt-2">
+        <div className="pt-2 h-52 overflow-auto p-5">
             {transactions.map(t => <div key={t.time.toString()} className="flex justify-between">
                 <div>
                     <div className="text-sm">
