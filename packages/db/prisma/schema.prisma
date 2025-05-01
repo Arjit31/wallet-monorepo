@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-   output   = "../node_modules/@prisma/xxx-client"
+  output   = "../node_modules/@prisma/xxx-client"
 }
 
 datasource db {
@@ -15,41 +15,51 @@ datasource db {
 }
 
 model User {
-  id    String     @id @default(uuid())
-  email String  @unique
-  name  String?
-  number String @unique
-  password String
-  balance Balance?
+  id                String              @id @default(uuid())
+  email             String              @unique
+  name              String?
+  number            String              @unique
+  password          String
+  balance           Balance?
   onRampTransaction OnRampTransaction[]
+  sendTransfer      p2pTransfer[]       @relation(name: "FromUserRelation")
+  receivedTransfers p2pTransfer[]       @relation(name: "ToUserRelation")
 }
 
 model Merchant {
-  id String @id @default(uuid())
-  email String
-  name String?
+  id        String   @id @default(uuid())
+  email     String
+  name      String?
   auth_type AuthType
 }
 
 model Balance {
-  id String @id @default(uuid())
+  id     String @id @default(uuid())
   userId String @unique
   amount Int
   locked Int
-  user User @relation(fields: [userId], references: [id])
-  
+  user   User   @relation(fields: [userId], references: [id])
 }
 
 model OnRampTransaction {
-  id String @id @default(uuid())
-  status OnRampStatus
-  token String @unique
-  provider String
-  amount Int
+  id         String       @id @default(uuid())
+  status     OnRampStatus
+  token      String       @unique
+  provider   String
+  amount     Int
   start_time DateTime
-  userId String
-  user User @relation(fields: [userId], references: [id])
+  userId     String
+  user       User         @relation(fields: [userId], references: [id])
+}
 
+model p2pTransfer {
+  id         String   @id @default(uuid())
+  amount     Int
+  time_stamp DateTime
+  fromUserId String
+  toUserId   String
+  fromUser   User     @relation(name: "FromUserRelation", fields: [fromUserId], references: [id])
+  toUser     User     @relation(name: "ToUserRelation", fields: [toUserId], references: [id])
 }
 
 enum AuthType {
