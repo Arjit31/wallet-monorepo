@@ -58,6 +58,8 @@ model p2pTransfer {
   time_stamp DateTime
   fromUserId String
   toUserId   String
+  fromUserNumber String
+  toUserNumber String
   fromUser   User     @relation(name: "FromUserRelation", fields: [fromUserId], references: [id])
   toUser     User     @relation(name: "ToUserRelation", fields: [toUserId], references: [id])
 }
