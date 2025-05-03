@@ -1,10 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import balanceReducer from './features/balanceSlice'
+import transactionReducer from "./features/transactionSlice"
 
 export const store = configureStore({
   reducer: {
     balance: balanceReducer,
+    transactions: transactionReducer
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  }),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

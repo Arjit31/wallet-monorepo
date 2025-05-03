@@ -4,7 +4,7 @@ import { authOptions } from "../auth";
 import { prisma } from "@repo/db";
 
 export async function p2pTransfer(to: string, amount: number) {
-  if(Number.isNaN(amount)){
+  if(Number.isNaN(amount) || amount <= 0){
     return {
       message: "Enter valid number",
     };

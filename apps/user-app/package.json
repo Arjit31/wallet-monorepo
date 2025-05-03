@@ -19,14 +19,18 @@
     "@types/lodash": "^4.17.16",
     "axios": "^1.9.0",
     "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.9",
+    "chartjs-chart-matrix": "^3.0.0",
     "lodash": "^4.17.21",
     "next": "^15.3.0",
     "next-auth": "^4.24.11",
     "postcss": "^8.5.3",
     "react": "^19.1.0",
+    "react-chartjs-2": "^5.3.0",
     "react-countdown": "^2.3.6",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
+    "recharts": "^2.15.3",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

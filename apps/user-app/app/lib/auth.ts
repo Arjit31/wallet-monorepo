@@ -41,23 +41,30 @@ export const authOptions = {
               email: existingUser.number,
             };
           }
-          else{
-            console.log(existingUser);
-          }
           return null;
         }
 
         try {
-          const user = await prisma.user.create({
-            data: {
-              number: credentials.phone,
-              password: hashedPassword,
-              email: credentials.email
-            },
-          });
-
+          const user = await prisma.$transaction(async(tx:any) => {
+            
+            const user = await tx.user.create({
+              data: {
+                number: credentials.phone,
+                password: hashedPassword,
+                email: credentials.email
+              },
+            });
+            await tx.balance.create({
+              data: {
+                userId: user.id,
+                amount: 0,
+                locked: 0,
+              }
+            })
+            return user;
+          })
           return {
-            id: user.id.toString(),
+            id: user.id.toString() || "",
             name: user.name,
             email: user.number,
           };

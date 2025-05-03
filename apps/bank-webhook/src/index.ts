@@ -17,6 +17,7 @@ app.post("/bank-webhook", async function (req, res) {
     userId: req.body.userId,
     amount: req.body.amount,
   };
+  console.log(paymentDetails);
   try {
     await prisma.$transaction([
       prisma.onRampTransaction.update({
