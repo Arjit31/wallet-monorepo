@@ -46,14 +46,11 @@ type PieData = {
 function calculateColoredBars(
   transactions: TransactionType[]
 ): ColoredBarPoint[] {
-  const sorted = [...transactions].sort(
-    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-  );
 
   const points: ColoredBarPoint[] = [];
   let prevBalance = 0;
-
-  for (const tx of sorted) {
+  const reversedTransactions = [...transactions].reverse();
+  for (const tx of reversedTransactions) {
     const change = tx.isSender ? -tx.amount : tx.amount;
     const currBalance = prevBalance + change;
 
