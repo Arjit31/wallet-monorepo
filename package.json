@@ -10,7 +10,9 @@
     "db:generate": "cd packages/db && npx prisma generate && cd ../.. ",
     "prismaBuild": "cd packages/db && tsc -b",
     "start-user-app": "cd ./apps/user-app && pnpm run start",
-    "start-bank-server": "cd ./apps/bank-webhook && tsc -b && pnpm run start"
+    "start-bank-server": "cd ./apps/bank-webhook && tsc -b && pnpm run start",
+    "postinstall": "cd packages/db && npx prisma generate && mkdir -p ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0/@prisma/client && cp ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.2__typescript@5.8.2/node_modules/prisma/libquery_engine-rhel-openssl-3.0.x.so.node ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0/@prisma/client/ && cp ../../node_modules/.pnpm/@prisma+client@6.6.0_prisma@6.6.0_typescript@5.8.2__typescript@5.8.2/node_modules/prisma/libquery_engine-rhel-openssl-3.0.x.so.node ../../node_modules/.pnpm/@prisma+client@5.22.0_prisma@5.22.0/@prisma/client/"
+
   },
   "devDependencies": {
     "prettier": "^3.5.3",
