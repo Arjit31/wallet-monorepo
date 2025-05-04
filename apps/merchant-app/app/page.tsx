@@ -13,8 +13,7 @@ export default function Home() {
   const dispatch = useDispatch()
   return (
     <div>
-      "hello"
-      "hi"
+      Test PULL
       <div>{balance}</div>
       <button onClick={() => {
         if(incrementByAmount){
