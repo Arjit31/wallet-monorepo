@@ -2,7 +2,7 @@
   "name": "wallet-turborepo",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build && pnpm run db:generate && pnpm run prismaBuild",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
