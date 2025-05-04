@@ -7,6 +7,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json("server working!");
+})
+
 app.post("/bank-webhook", async function (req, res) {
   const paymentDetails: {
     token: string;
