@@ -39,4 +39,11 @@ jobs:
           sudo docker pull arjit31/wallet:latest
           sudo docker stop web-app || true
           sudo docker rm web-app || true
-          sudo docker run -d --name web-app -p 3005:3000 arjit31/wallet:latest
+          sudo docker run -d \
+            --name web-app \
+            -p 3005:3000 \
+            -e DATABASE_URL=${{ secrets.DATABASE_URL }} \
+            -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+            -e NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} \
+            -e NEXT_PUBLIC_WEBHOOK_URL=${{ secrets.NEXT_PUBLIC_WEBHOOK_URL }} \
+            arjit31/wallet:latest
