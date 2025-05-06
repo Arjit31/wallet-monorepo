@@ -1,0 +1,19 @@
+FROM node:20.12.0-alpine3.19
+
+RUN npm i -g pnpm
+
+WORKDIR /usr/src/app
+
+COPY package.json pnpm-lock.yaml turbo.json pnpm-workspace.yaml ./
+
+COPY apps ./apps
+COPY packages ./packages
+
+# Install dependencies
+RUN pnpm install
+
+RUN pnpm run db:generate
+
+RUN pnpm run build
+
+CMD ["npm", "run", "start-user-app"]
